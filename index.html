@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema General de Estadísticas</title>
+    <link rel="icon" href="https://www.ingenieria.unam.mx/penuelas/CircuitosDigitales/img/mecatronica.png" type="image/png">
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.5; color: #333; max-width: 1300px; margin: auto; padding: 20px; background-color: #f8f9fa; }
+        
+        /* Encabezado: Fondo blanco, letras azul marino */
+        header { 
+            background-color: #ffffff; 
+            color: #003366; 
+            padding: 20px 50px; 
+            border-radius: 10px; 
+            margin-bottom: 30px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-bottom: 6px solid #003366;
+        }
+        
+        .logo-unam { height: 110px; width: auto; }
+        .logo-dep { height: 110px; width: auto; }
+        .logo-id { height: 110px; width: auto; }
+        .header-text { text-align: center; }
+        .header-text h1 { margin: 0; font-size: 2.2em; text-transform: uppercase; letter-spacing: 2px; }
+        .header-text p { margin: 5px 0 0; font-size: 1.2em; font-weight: bold; }
+
+        .aviso { background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 15px; border-radius: 8px; margin-bottom: 30px; text-align: center; }
+        
+        .seccion-titulo { color: #003366; border-bottom: 2px solid #003366; margin: 40px 0 20px; padding-bottom: 10px; text-transform: uppercase; font-size: 1.4em; grid-column: 1 / -1; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-top: 4px solid #003366; display: flex; flex-direction: column; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card h2 { margin-top: 0; color: #003366; font-size: 1em; height: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .card p { font-size: 0.85em; color: #666; flex-grow: 1; margin: 10px 0; }
+
+        /* Colores de botones solicitados */
+        .btn { display: block; color: white; text-align: center; padding: 10px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 0.85em; }
+        .btn-prof { background-color: #007bff; } /* Azul */
+        .btn-estu { background-color: #28a745; } /* Verde */
+        .btn-comun { background-color: #dc3545; }   /* Rojo */
+
+        @media (max-width: 900px) { header { flex-direction: column; text-align: center; gap: 15px; } }
+    </style>
+</head>
+<body>
+
+<header>
+    
+    <img src="https://www.ingenieria.unam.mx/penuelas/CircuitosDigitales/img/2026_UNAM_id_ch.png" alt="Identidad UNAM" class="logo-id">
+
+    <div class="header-text">
+        <h1>Sistema General de Estadísticas</h1>
+        <h1>IA, ME, MIR</h1>
+        <p>Departamento de Ingeniería Mecatrónica</p>
+    </div>
+    <img src="https://www.ingenieria.unam.mx/penuelas/CircuitosDigitales/img/mecatronica.png" alt="Logo Departamento" class="logo-dep">
+</header>
+
+<div class="aviso">
+    <p><strong>IMPORTANTE:</strong> Reportar antes del <strong>miércoles 11 de marzo a las 19:00</strong>. Sólo es necesario informar las actividades realizadas, <strong>NO</strong> es necesario entrar a todas las ligas.</p>
+    <p>El periodo comprende <strong>todo el 2025</strong> y de <strong>Enero a Marzo 2026.</strong></p>
+</div>
+<!--
+<div class="grid">
+    <h2 class="seccion-titulo">REPORTE DE ACTIVIDADES DE Personal de Tiempo Completo</h2>
+    
+    <div class="card">
+        <h2>1. Academias</h2>
+        <p>Reportar de actividades generales de las Academias.</p>
+        <a href="https://forms.gle/7oas1poC41Y7bymi8" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+<div class="card">
+        <h2>2. Grados Académicos</h2>
+        <p>Profesorado de Tiempo Completo que elevó su grado académico.</p>
+        <a href="https://forms.gle/fN38UVy36YBgdczr5" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>3. Capacitación</h2>
+        <p>Profesorado de Tiempo Completo actualizado en área disciplinar o didáctica.</p>
+        <a href="https://forms.gle/bCJXWdFaUoDEYwD3A" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>4. Premios Académicos</h2>
+        <p>Premios y reconocimientos para el Profesorado de Tiempo Completo.</p>
+        <a href="https://forms.gle/on5SNMzJy6Kp6mGD6" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>5. Reconocimiento Académico</h2>
+        <p>Actividad como evaluador, asesor o en comisiones.</p>
+        <a href="https://forms.gle/wfuGgvGkFfhrFW7G7" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>6. Material Didáctico</h2>
+        <p>Soportes generados por el Profesorado de Tiempo Completo.</p>
+        <a href="https://forms.gle/YL5irtBRpp6ZyskQ8" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>7. Libros</h2>
+        <p>Libros y capítulos del Profesorado de Tiempo Completo.</p>
+        <a href="https://forms.gle/vKiGMAr4DXdYdTAx9" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+<div class="card">
+        <h2>8. Movilidad Entrante</h2>
+        <p>Personal académico de otras universidades de intercambio en la Facultad de Ingeniería.</p>
+        <a href="https://forms.gle/CJBZabWc4Kb2NTcu5" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>9. Movilidad Saliente</h2>
+        <p>Personal académico que realizó intercambio en otras universidades.</p>
+        <a href="https://forms.gle/t6pnbpwdhJJGXeyH9" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>10. Ponencias</h2>
+        <p>Académicos de tiempo completo que participan como ponentes en actos como congresos, foros, mesas redondas y simposios nacionales e internacionales.</p>
+        <a href="https://forms.gle/4Jf3S4TU4pCzoqzX9" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>11. Artículos en Revistas</h2>
+        <p>Publicaciones en revistas arbitradas o memorias.</p>
+        <a href="https://forms.gle/jDvggDMVX9DZE7Du8" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>12. Proyectos Investigación y Desarrollo</h2>
+        <p>Investigación, PAPIIT, PAPIME y SECIHTI.</p>
+        <a href="https://forms.gle/XQ2H5aMBLsYhViaG7" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>13. Informes Técnicos</h2>
+        <p>Elaboración de informes técnicos realizados.</p>
+        <a href="https://forms.gle/9BjRx3suAzCMrsHYA" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>14. Actividades Organizadas</h2>
+        <p>Actividades organizadas por académicos.</p>
+        <a href="https://forms.gle/H99munR9EMmXGSDY8" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+
+    <div class="card">
+        <h2>15. Actividades de Comunicación</h2>
+        <p>Actividades Transmitidas y/o Producidas.</p>
+        <a href="https://forms.gle/zKBnxVMS9GDHby5Q9" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>16. Comisiones y/u Organizamos Evaluadores</h2>
+        <p>Comisión dictaminadora, Comisión evaluadora, CACEI, CENEVAL, CIEES, etc.</p>
+        <a href="https://forms.gle/YSgDpFBRYqmjEYfA6" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>17. Vinculación con alumnos</h2>
+        <p>Tesis, Servicio Social, Tutoría.</p>
+        <a href="https://forms.gle/HsEU4WSdFdazKj8m8" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+
+    <div class="card">
+        <h2>18. Productos tecnológicos</h2>
+        <p>Desarrollo, Patentes, Propiedad Intelectual, etc.</p>
+        <a href="https://forms.gle/c1cFLtxpjPpFyhBw6" class="btn btn-prof" target="_blank">Informar</a>
+    </div>
+
+    <h2 class="seccion-titulo">Actividades hacia el Estudiantado</h2>
+
+    <div class="card">
+        <h2>1E. Aprovechamiento</h2>
+        <p>Reportar cursos/talleres para fortalecer el rendimiento académico.</p>
+        <a href="https://forms.gle/JRAQn2WUatsZZBRV8" class="btn btn-estu" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>2E. Alta Reprobación</h2>
+        <p>Cursos en asignaturas con alta reprobación.</p>
+        <a href="https://forms.gle/spNhd4svX3mCQ9Mx6" class="btn btn-estu" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>3E. Intersemestrales</h2>
+        <p>Reportar cursos/talleres intersemestrales.</p>
+        <a href="https://forms.gle/ZmZnwTu9b1xRrf9R7" class="btn btn-estu" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>4E. Reconocimiento</h2>
+        <p>Premios y reconocimientos estudiantiles.</p>
+        <a href="https://forms.gle/rLMaifZHmYY8P3M3A" class="btn btn-estu" target="_blank">Informar</a>
+    </div>
+
+    <div class="card">
+        <h2>5E. Emprendimiento</h2>
+        <p>Estudiantes en actividades de emprendimiento.</p>
+        <a href="https://forms.gle/dAcrK1CqtR6JwJbM9" class="btn btn-estu" target="_blank">Informar</a>
+    </div>
+</div>
+-->
+</body>
+</html>
