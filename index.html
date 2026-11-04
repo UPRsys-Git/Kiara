@@ -923,6 +923,16 @@ a.venue-map-frame:hover .venue-map-img { transform: scale(1.04); }
   max-width: 24rem;
 }
 .rsvp-note strong { font-weight: 700; color: #fffaf2; }
+/* Aparta la fecha y Cómo llegar en negritas; hora en letra más legible */
+#save-the-date .section-label { font-weight: 700; opacity: 1; }
+.time-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  letter-spacing: 0.08em;
+  font-variant-numeric: lining-nums;
+}
+.btn-maps { font-weight: 700; color: #132813; }
 /* Ramas decorativas: que no se encimen sobre los textos en computadora */
 @media (min-width: 769px) {
   .branch-hero { width: min(28vw, 25rem); top: -10px; right: -10px; }
