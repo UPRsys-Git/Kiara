@@ -938,6 +938,23 @@ a.venue-map-frame:hover .venue-map-img { transform: scale(1.04); }
 /* Cierre: nombre y fecha más grandes y en negritas */
 .closing-name { font-weight: 700; font-size: clamp(1.7rem, 4vw, 2.5rem); margin-bottom: 0.5rem; }
 .closing-date { font-weight: 700; font-size: clamp(1rem, 2vw, 1.25rem); letter-spacing: 0.15em; opacity: 0.9; }
+/* Botones rosa: letra blanca en negritas (rosa un poco más intenso para que el blanco se lea) */
+.btn-whatsapp, .btn-maps, .venue-map-inner p {
+  background: #cc5a7e;
+  border-color: #cc5a7e;
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(90,20,45,0.35);
+}
+.btn-maps { font-size: 0.8rem; }
+.venue-map-inner p { font-size: 0.78rem; }
+.btn-whatsapp:hover, .btn-whatsapp:active, .btn-whatsapp:focus-visible,
+.btn-maps:hover, .btn-maps:active, .btn-maps:focus-visible {
+  background: transparent;
+  color: var(--pink-light);
+  border-color: var(--pink-light);
+  text-shadow: none;
+}
 /* Ramas decorativas: que no se encimen sobre los textos en computadora */
 @media (min-width: 769px) {
   .branch-hero { width: min(28vw, 25rem); top: -10px; right: -10px; }
@@ -1195,7 +1212,7 @@ a.venue-map-frame:hover .venue-map-img { transform: scale(1.04); }
     <h2 class="dress-title reveal reveal-delay-1">Código de<br>Vestimenta</h2>
     <p class="dress-subtitle reveal reveal-delay-2">
       Vestimenta casual.<br>
-      <strong>Te pedimos evitar los colores</strong> de nuestra paleta, ya que están reservados para la quinceañera y su corte. 🌿
+      <strong>Te pedimos evitar los colores</strong> de nuestra paleta, ya que están reservados para la quinceañera y su corte.
     </p>
     <div class="palette-swatches reveal reveal-delay-3">
       <div class="swatch" style="background: linear-gradient(135deg, #92b892, #8db88d);" title="Verde Claro" aria-label="Muestra verde claro"></div>
@@ -1218,7 +1235,7 @@ a.venue-map-frame:hover .venue-map-img { transform: scale(1.04); }
 <section id="rsvp" class="bg-herringbone-dark">
   <div class="content">
     <h2 class="rsvp-title reveal">Confirmación</h2>
-    <p class="rsvp-note reveal reveal-delay-1">Tu presencia es muy especial para nosotros. Te pedimos de favor <strong>confirmar tu asistencia</strong> para tener tu lugar reservado. 💌</p>
+    <p class="rsvp-note reveal reveal-delay-1">Tu presencia es muy especial para nosotros. Te pedimos de favor <strong>confirmar tu asistencia</strong> para tener tu lugar reservado.</p>
     <a class="btn-whatsapp reveal reveal-delay-2" href="https://wa.me/525585327589?text=Hola%2C%20soy%20______%20%F0%9F%8C%B8%20Confirmo%20mi%20asistencia%20a%20los%20XV%20a%C3%B1os%20de%20Kiara%20el%205%20de%20diciembre.%20%C2%BFMe%20podr%C3%ADas%20decir%20cu%C3%A1ntos%20boletos%20tengo%3F" target="_blank" rel="noopener noreferrer" aria-label="Confirmar asistencia por WhatsApp">Confirmar Asistencia</a>
   </div>
 </section>
