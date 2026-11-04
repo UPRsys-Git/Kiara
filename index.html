@@ -976,6 +976,24 @@ a.venue-map-frame:hover .venue-map-img { transform: scale(1.04); }
   margin-top: 0.5rem; font-family: var(--font-body); font-weight: 600;
   font-size: 0.85rem; color: #fbd5df;
 }
+/* Botón de música */
+.music-toggle {
+  position: fixed; left: 16px; bottom: 16px; z-index: 9996;
+  width: 3rem; height: 3rem; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(30,58,30,0.82); border: 2px solid var(--pink);
+  color: var(--pink-light); cursor: pointer; padding: 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+.music-toggle:hover { transform: scale(1.06); }
+.music-toggle svg { width: 1.35rem; height: 1.35rem; }
+.music-toggle .ico-off { display: none; }
+.music-toggle.is-off .ico-on { display: none; }
+.music-toggle.is-off .ico-off { display: block; }
+.music-toggle.is-playing { animation: musicPulse 2.4s ease-in-out infinite; }
+@keyframes musicPulse { 0%,100% { box-shadow: 0 4px 14px rgba(0,0,0,0.35), 0 0 0 0 rgba(232,145,170,0.45); } 50% { box-shadow: 0 4px 14px rgba(0,0,0,0.35), 0 0 0 8px rgba(232,145,170,0); } }
 /* Ramas decorativas: que no se encimen sobre los textos en computadora */
 @media (min-width: 769px) {
   .branch-hero { width: min(28vw, 25rem); top: -10px; right: -10px; }
@@ -1783,6 +1801,47 @@ a.venue-map-frame:hover .venue-map-img { transform: scale(1.04); }
       return;
     }
     btn.href = base + '?text=' + encodeURIComponent(mensaje(nombre));
+  });
+})();
+</script>
+<!-- Música: vals original compuesto para esta invitación. Piano: Salamander Grand Piano V3, Alexander Holm, CC BY 3.0 (creativecommons.org/licenses/by/3.0/) -->
+<audio id="bg-music" src="vals-kiara.mp3" loop preload="none"></audio>
+<button class="music-toggle is-off" id="music-toggle" type="button" aria-label="Poner música" title="Música: vals original · Piano: Salamander Grand Piano, A. Holm (CC BY 3.0)">
+  <svg class="ico-on" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 18.5a3 3 0 1 1-2-2.83V5.2l12-2.4v12.7a3 3 0 1 1-2-2.83V7.04L9 8.64z"/></svg>
+  <svg class="ico-off" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 18.5a3 3 0 1 1-2-2.83V5.2l12-2.4v12.7a3 3 0 1 1-2-2.83V7.04L9 8.64z" opacity="0.55"/><path d="M3.3 2.3 21.7 20.7l-1.4 1.4L1.9 3.7z"/></svg>
+</button>
+<script>
+/* Música de fondo: empieza con el primer toque (los navegadores no permiten que suene sola) */
+(function () {
+  var audio = document.getElementById('bg-music');
+  var btn = document.getElementById('music-toggle');
+  if (!audio || !btn) return;
+  audio.volume = 0.35;
+  var userOff = false, wasPlaying = false;
+  function ui(on) {
+    btn.classList.toggle('is-off', !on);
+    btn.classList.toggle('is-playing', on);
+    btn.setAttribute('aria-label', on ? 'Quitar música' : 'Poner música');
+  }
+  function play() {
+    var p = audio.play();
+    if (p && p.then) p.then(function () { ui(true); }).catch(function () { ui(false); });
+    else ui(true);
+  }
+  function stop() { audio.pause(); ui(false); }
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (audio.paused) { userOff = false; play(); } else { userOff = true; stop(); }
+  });
+  function firstTouch(e) {
+    if (e.target && e.target.closest && e.target.closest('#music-toggle')) return;
+    ['pointerdown','touchstart','keydown'].forEach(function (t) { document.removeEventListener(t, firstTouch, true); });
+    if (!userOff && audio.paused) play();
+  }
+  ['pointerdown','touchstart','keydown'].forEach(function (t) { document.addEventListener(t, firstTouch, true); });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { wasPlaying = !audio.paused; if (wasPlaying) audio.pause(); }
+    else if (wasPlaying && !userOff) { play(); }
   });
 })();
 </script>
