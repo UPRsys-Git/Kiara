@@ -955,6 +955,27 @@ a.venue-map-frame:hover .venue-map-img { transform: scale(1.04); }
   border-color: var(--pink-light);
   text-shadow: none;
 }
+/* Campo de nombre para confirmar */
+.rsvp-name { max-width: 23.75rem; margin: 0 auto 1.25rem; text-align: left; }
+.rsvp-name label {
+  display: block; margin-bottom: 0.5rem;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.85rem;
+  letter-spacing: 0.08em; color: var(--text-ivory);
+}
+.rsvp-name input {
+  width: 100%; padding: 0.85rem 1rem;
+  font-family: var(--font-body); font-size: max(16px, 1rem); font-weight: 400;
+  color: #fffaf2; background: rgba(245,240,232,0.08);
+  border: 1px solid rgba(245,240,232,0.55); border-radius: 0; outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.rsvp-name input::placeholder { color: rgba(245,240,232,0.6); }
+.rsvp-name input:focus { border-color: var(--pink-light); background: rgba(245,240,232,0.14); }
+.rsvp-name.is-error input { border-color: #f7b8cb; box-shadow: 0 0 0 2px rgba(247,184,203,0.45); }
+.rsvp-error {
+  margin-top: 0.5rem; font-family: var(--font-body); font-weight: 600;
+  font-size: 0.85rem; color: #fbd5df;
+}
 /* Ramas decorativas: que no se encimen sobre los textos en computadora */
 @media (min-width: 769px) {
   .branch-hero { width: min(28vw, 25rem); top: -10px; right: -10px; }
@@ -1236,6 +1257,11 @@ a.venue-map-frame:hover .venue-map-img { transform: scale(1.04); }
   <div class="content">
     <h2 class="rsvp-title reveal">Confirmación</h2>
     <p class="rsvp-note reveal reveal-delay-1">Tu presencia es muy especial para nosotros. Te pedimos de favor <strong>confirmar tu asistencia</strong> para tener tu lugar reservado.</p>
+    <div class="rsvp-name reveal reveal-delay-2">
+      <label for="rsvp-nombre">Escribe tu nombre</label>
+      <input id="rsvp-nombre" type="text" autocomplete="name" placeholder="Nombre y apellido" maxlength="60" enterkeyhint="send">
+      <p class="rsvp-error" id="rsvp-error" role="alert" hidden>Por favor escribe tu nombre para confirmar.</p>
+    </div>
     <a class="btn-whatsapp reveal reveal-delay-2" href="https://wa.me/525585327589?text=%C2%A1Hola%21%20Confirmo%20mi%20asistencia%20a%20los%20XV%20a%C3%B1os%20de%20Kiara%20el%20viernes%205%20de%20diciembre.%0A%C2%BFMe%20podr%C3%ADas%20decir%20cu%C3%A1ntos%20boletos%20tengo%3F%0A%0AMi%20nombre%20es%3A%20" target="_blank" rel="noopener noreferrer" aria-label="Confirmar asistencia por WhatsApp">Confirmar Asistencia</a>
   </div>
 </section>
@@ -1730,5 +1756,35 @@ a.venue-map-frame:hover .venue-map-img { transform: scale(1.04); }
 })();
 </script>
 
+<script>
+/* Confirmación: arma el mensaje de WhatsApp con el nombre del invitado */
+(function () {
+  var btn = document.querySelector('.btn-whatsapp');
+  var input = document.getElementById('rsvp-nombre');
+  var box = document.querySelector('.rsvp-name');
+  var err = document.getElementById('rsvp-error');
+  if (!btn || !input) return;
+  var base = btn.href.split('?')[0];
+  function mensaje(nombre) {
+    return '¡Hola! Soy ' + nombre + '. Confirmo mi asistencia a los XV años de Kiara el viernes 5 de diciembre.\n¿Me podrías decir cuántos boletos tengo?';
+  }
+  function limpiar() { box.classList.remove('is-error'); err.hidden = true; }
+  input.addEventListener('input', limpiar);
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); btn.click(); }
+  });
+  btn.addEventListener('click', function (e) {
+    var nombre = input.value.trim().replace(/\s+/g, ' ');
+    if (!nombre) {
+      e.preventDefault();
+      box.classList.add('is-error');
+      err.hidden = false;
+      input.focus();
+      return;
+    }
+    btn.href = base + '?text=' + encodeURIComponent(mensaje(nombre));
+  });
+})();
+</script>
 </body>
 </html>
