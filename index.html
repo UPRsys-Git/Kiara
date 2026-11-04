@@ -849,6 +849,67 @@ svg.flor { width: 3.625rem; height: 3.625rem; flex: none; filter: drop-shadow(0 
   #venue, #rsvp { min-height: 70svh; }
   #dress-code { min-height: 60svh; }
 }
+/* ============================================================
+   AJUSTES V4 — encuadre en celular y computadora
+   ============================================================ */
+/* Altura real de pantalla en celulares (sin contar barras del navegador) */
+#hero, #closing { min-height: 100svh; }
+
+/* Textos pequeños más legibles */
+.section-label { font-size: clamp(0.7rem, 1.2vw, 0.8rem); opacity: 0.9; }
+.hero-invited { font-size: clamp(0.7rem, 1.5vw, 0.9rem); }
+.scroll-indicator span { font-size: 0.7rem; opacity: 0.85; }
+.closing-date { font-size: 0.8rem; opacity: 0.75; }
+.venue-map-inner p { font-size: 0.75rem; opacity: 0.75; }
+
+/* Aparta la fecha: fondo un poco más profundo para que el texto contraste */
+.bg-watercolor-light {
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(141,184,141,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 60%, rgba(146,184,146,0.18) 0%, transparent 45%),
+    radial-gradient(ellipse at 60% 10%, rgba(232,145,170,0.06) 0%, transparent 40%),
+    repeating-linear-gradient(0deg, rgba(245,240,232,0.03) 0px, transparent 1px, transparent 4px),
+    repeating-linear-gradient(90deg, rgba(245,240,232,0.03) 0px, transparent 1px, transparent 4px),
+    linear-gradient(170deg, #486c48 0%, #4f744f 40%, #557a55 70%, #4a6e4a 100%);
+}
+.date-display { color: #fffaf2; text-shadow: 0 2px 12px rgba(20,40,20,0.35); }
+.time-display { color: #fbd5df; text-shadow: 0 2px 10px rgba(20,40,20,0.35); }
+#save-the-date .thin-divider { background: linear-gradient(90deg, transparent, rgba(251,213,223,0.8), transparent); }
+
+/* Ubicación: bloque centrado y proporcionado en computadora */
+.venue-grid { max-width: min(56rem, 920px); margin: 0 auto; }
+.venue-map-frame { width: 100%; justify-self: center; }
+.btn-maps { font-size: 0.75rem; padding: 0.85rem 1.8rem; }
+
+/* Vestimenta: renglones más cortos y paleta alineada con sus nombres */
+.dress-subtitle { max-width: 34rem; margin-left: auto; margin-right: auto; opacity: 0.9; }
+.palette-swatches { gap: 1.25rem; }
+.swatch { width: 2.75rem; height: 2.75rem; }
+.palette-labels { gap: 0.25rem; }
+.palette-labels span { width: 3.75rem; font-size: 0.68rem; font-weight: 400; opacity: 0.8; }
+
+/* Ramas decorativas: que no se encimen sobre los textos en computadora */
+@media (min-width: 769px) {
+  .branch-hero { width: min(28vw, 25rem); top: -10px; right: -10px; }
+  .branch-save-date { width: min(22vw, 19rem); bottom: -20px; left: -30px; }
+  .branch-closing { width: min(30vw, 25rem); top: 0; left: -30px; }
+}
+
+/* Celular: menos espacio vacío entre secciones */
+@media (max-width: 768px) {
+  #save-the-date, #venue, #dress-code, #rsvp {
+    min-height: auto;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+  .venue-map-frame { max-width: 280px; }
+  .section-label { margin-bottom: 1.25rem; }
+}
+@media (max-width: 480px) {
+  .hero-invited { letter-spacing: 0.22em; }
+  .hero-xv { letter-spacing: 0.35em; }
+  .dress-subtitle { font-size: 0.9rem; }
+}
 </style>
 </head>
 <body>
@@ -965,7 +1026,7 @@ svg.flor { width: 3.625rem; height: 3.625rem; flex: none; filter: drop-shadow(0 
   </svg>
 
   <div class="hero-content">
-    <p class="hero-invited reveal">Estás cordialmente invitado(a) a</p>
+    <p class="hero-invited reveal">Estás cordialmente invitado(a)&nbsp;a</p>
     <h1 class="hero-name reveal reveal-delay-1">Kiara</h1>
     <p class="hero-quince reveal reveal-delay-2">Quinceañera</p>
     <div class="hero-rule reveal reveal-delay-3">
@@ -1021,7 +1082,7 @@ svg.flor { width: 3.625rem; height: 3.625rem; flex: none; filter: drop-shadow(0 
   <div class="content">
     <p class="section-label reveal">Aparta la Fecha</p>
     <div class="thin-divider reveal reveal-delay-1"></div>
-    <h2 class="date-display reveal reveal-delay-2">Viernes,<br>5 de Diciembre de 2026</h2>
+    <h2 class="date-display reveal reveal-delay-2">Viernes,<br>5&nbsp;de&nbsp;Diciembre de&nbsp;2026</h2>
     <div class="thin-divider reveal reveal-delay-3"></div>
     <p class="time-display reveal reveal-delay-4">3:00 PM</p>
   </div>
